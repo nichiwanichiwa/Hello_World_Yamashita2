@@ -3,23 +3,36 @@ package com.example.yamashitamasaki.hello_world;
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 
 public class SubActivity extends Activity {
+
+    InputMethodManager inputMethodManager;
+    RelativeLayout R_layout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub);
+
+        //キーボードの状態を取得
+        inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        //レイアウトの取得
+        R_layout = (RelativeLayout)findViewById(R.id.sub_Layout);
 
         //データの読み込み
         loadInt( (EditText)findViewById(R.id.EditText5) , "youji_people" ); //幼児
@@ -37,6 +50,18 @@ public class SubActivity extends Activity {
         Stock.setOnClickListener( new OnClickListenerClass("com.example.yamashitamasaki.hello_world","com.example.yamashitamasaki.hello_world.Stock") );
         hijousyoku.setOnClickListener( new OnClickListenerClass("com.example.yamashitamasaki.hello_world","com.example.yamashitamasaki.hello_world.Hijousyoku") );
 
+    }
+
+    //画面をタッチいたときの処理
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        //キーボードを非表示にする
+        inputMethodManager.hideSoftInputFromWindow(R_layout.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        //フォーカスの更新
+        //キーボードが非表示になっているはずなので、EditTextからフォーカスが外れる
+        R_layout.requestFocus();
+        return true;
     }
 
     //遷移クラス

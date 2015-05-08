@@ -13,11 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/gasView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="false"
         android:src="@drawable/gas"
         android:layout_gravity="right|top"
-        android:layout_alignParentLeft="false" />
+        android:layout_below="@+id/textView24"
+        android:layout_toStartOf="@+id/hijousyoku3" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -32,7 +31,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/bombeView"
         android:src="@drawable/bombe"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/tissueView"
         android:layout_toEndOf="@+id/matchView" />
 
     <ImageView
@@ -115,4 +114,13 @@
         android:id="@+id/select3"
         android:layout_alignTop="@+id/bichiku3"
         android:layout_toEndOf="@+id/bichiku3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="備蓄"
+        android:id="@+id/textView24"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
