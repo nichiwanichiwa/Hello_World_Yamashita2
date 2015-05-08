@@ -1,0 +1,118 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.yamashitamasaki.hello_world.Stock"
+    android:clickable="false"
+    android:focusable="false"
+    android:focusableInTouchMode="false">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gasView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="false"
+        android:src="@drawable/gas"
+        android:layout_gravity="right|top"
+        android:layout_alignParentLeft="false" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/matchView"
+        android:src="@drawable/match"
+        android:layout_alignTop="@+id/gasView"
+        android:layout_toEndOf="@+id/gasView" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bombeView"
+        android:src="@drawable/bombe"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/matchView" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/whistleView"
+        android:src="@drawable/whistle"
+        android:layout_alignWithParentIfMissing="false"
+        android:adjustViewBounds="false"
+        android:baselineAlignBottom="false"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:scaleType="fitXY"
+        android:layout_above="@+id/tissueView"
+        android:layout_toEndOf="@+id/bombeView" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/shitagiView"
+        android:src="@drawable/shitagi"
+        android:layout_below="@+id/gasView"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tissueView"
+        android:src="@drawable/tissue"
+        android:layout_below="@+id/matchView"
+        android:layout_toEndOf="@+id/shitagiView" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/almiView"
+        android:src="@drawable/almi"
+        android:layout_below="@+id/whistleView"
+        android:layout_toEndOf="@+id/tissueView" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gunnteView"
+        android:src="@drawable/gunnte"
+        android:layout_below="@+id/whistleView"
+        android:layout_alignStart="@+id/whistleView"
+        android:nestedScrollingEnabled="false"
+        android:scaleType="fitXY" />
+
+    <Button
+        android:layout_width="82dp"
+        android:layout_height="wrap_content"
+        android:text="ホーム"
+        android:id="@+id/homebutton3"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="82dp"
+        android:layout_height="wrap_content"
+        android:text="非常食"
+        android:id="@+id/hijousyoku3"
+        android:layout_alignTop="@+id/homebutton3"
+        android:layout_toEndOf="@+id/homebutton3" />
+
+    <Button
+        android:layout_width="82dp"
+        android:layout_height="wrap_content"
+        android:text="備蓄品"
+        android:id="@+id/bichiku3"
+        android:layout_alignTop="@+id/hijousyoku3"
+        android:layout_toEndOf="@+id/hijousyoku3" />
+
+    <Button
+        android:layout_width="82dp"
+        android:layout_height="wrap_content"
+        android:text="設定"
+        android:id="@+id/select3"
+        android:layout_alignTop="@+id/bichiku3"
+        android:layout_toEndOf="@+id/bichiku3" />
+</RelativeLayout>
