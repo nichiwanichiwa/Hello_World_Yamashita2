@@ -43,7 +43,7 @@ public class Hijousyoku extends Activity {
 
 
         // 場所を指定する
-        Home.setOnClickListener( new OnClickListenerClass(this) );
+        Home.setOnClickListener( new OnClickListenerClass("com.example.yamashitamasaki.hello_world","com.example.yamashitamasaki.hello_world.MainActivity",this) );
         Stock.setOnClickListener( new OnClickListenerClass("com.example.yamashitamasaki.hello_world","com.example.yamashitamasaki.hello_world.Stock",this) );
         DispBtn.setOnClickListener(new OnClickListenerClass("com.example.yamashitamasaki.hello_world","com.example.yamashitamasaki.hello_world.SubActivity",this));
 

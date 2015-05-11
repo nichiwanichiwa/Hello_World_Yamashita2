@@ -39,9 +39,9 @@ public class Stock extends Activity {
         Button DispBtn = (Button)findViewById(R.id.select3);//「設定」ボタン
         Button hijousyoku = (Button)findViewById(R.id.hijousyoku3);//「非常食」ボタン
 
-        Home.setOnClickListener( new OnClickListenerClass(this) );
+        Home.setOnClickListener( new OnClickListenerClass("com.example.yamashitamasaki.hello_world","com.example.yamashitamasaki.hello_world.MainActivity",this) );
         hijousyoku.setOnClickListener( new OnClickListenerClass("com.example.yamashitamasaki.hello_world","com.example.yamashitamasaki.hello_world.Hijousyoku",this ) );
-        DispBtn.setOnClickListener(new OnClickListenerClass("com.example.yamashitamasaki.hello_world","com.example.yamashitamasaki.hello_world.SubActivity",this));
+        DispBtn.setOnClickListener( new OnClickListenerClass("com.example.yamashitamasaki.hello_world","com.example.yamashitamasaki.hello_world.SubActivity",this ) );
 
         //ガスコロン＿ダイアログ
         gas_iv.setOnClickListener( new DialogOnClickListenerClass("ガスコンロ","gas_number",R.drawable.gas , this) );

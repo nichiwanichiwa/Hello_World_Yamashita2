@@ -23,7 +23,7 @@ public class DialogOnClickListenerClass implements View.OnClickListener {
     int img_id;         //イメージ画像のID番号
     Activity act;        //アクティビティ
 
-    //コンストラクタ
+    //コンストラクタ（単にダイアログを表示させたい場合）
     public DialogOnClickListenerClass(String TitleName, String Message, Activity act)
     {
         AlertDialog.Builder alert;
@@ -88,7 +88,7 @@ public class DialogOnClickListenerClass implements View.OnClickListener {
         //指定したEditTextの中に値を挿入する
         et.setText(loadInt(prefName));
 
-        //非常食画面時に行う処理
+        //非常食画面の時に行う処理
         if( act.getClass() == Hijousyoku.class )
         {
             //文字を変える

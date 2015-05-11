@@ -41,18 +41,18 @@ public class SubActivity extends Activity {
         loadInt( (EditText)findViewById(R.id.EditText3) , "kiniti_day");    //期日
         loadInt( (EditText)findViewById(R.id.EditText4) , "sitei_day");     //設定日数
 
-        // 戻る画面
         Button Home = (Button)findViewById(R.id.homebutton2);          //「ホーム」ボタン
         Button Stock = (Button)findViewById(R.id.bichiku2);           //「備蓄」ボタン
         Button hijousyoku = (Button)findViewById(R.id.hijousyoku2);  //「非常食」ボタン
 
-        Home.setOnClickListener( new OnClickListenerClass() );
+        //移動
+        Home.setOnClickListener( new OnClickListenerClass("com.example.yamashitamasaki.hello_world","com.example.yamashitamasaki.hello_world.MainActivity") );
         Stock.setOnClickListener( new OnClickListenerClass("com.example.yamashitamasaki.hello_world","com.example.yamashitamasaki.hello_world.Stock") );
         hijousyoku.setOnClickListener( new OnClickListenerClass("com.example.yamashitamasaki.hello_world","com.example.yamashitamasaki.hello_world.Hijousyoku") );
 
     }
 
-    //画面をタッチいたときの処理
+    //画面をタッチしたときの処理
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 

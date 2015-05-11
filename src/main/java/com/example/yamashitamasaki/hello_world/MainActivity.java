@@ -2,6 +2,7 @@ package com.example.yamashitamasaki.hello_world;
 
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ public class MainActivity extends Activity {
 
         ImageButton hijousyoku_ib = (ImageButton)findViewById(R.id.L_graph);
         ImageButton bichiku_ib = (ImageButton)findViewById(R.id.R_graph);
+
         //非常食へ
         hijousyoku.setOnClickListener(new OnClickListenerClass("com.example.yamashitamasaki.hello_world","com.example.yamashitamasaki.hello_world.Hijousyoku",this));
         hijousyoku_ib.setOnClickListener(new OnClickListenerClass("com.example.yamashitamasaki.hello_world","com.example.yamashitamasaki.hello_world.Hijousyoku",this));
@@ -90,20 +92,40 @@ public class MainActivity extends Activity {
 
         //TODO:表示テスト
         TextView kigen_tv = (TextView)findViewById(R.id.kigen2);
-        kigen_tv.setText( current_date("retorutogohan_number_pref","レトルトごはん") );
+        kigen_tv.setVisibility(View.GONE);
+        SharedPreferences pref2 = getSharedPreferences("Preferences", MODE_PRIVATE);
+
+        //TODO:各商品の期限が切れると、その名前と日数を表示する
+        //賞味期限が設定した期限に近づくと警告文を表示する
+        if( getDate("retorutogohan_number_pref") < pref2.getInt("kiniti_day",0) )
+        {
+            kigen_tv.setVisibility(View.VISIBLE);
+            kigen_tv.setText("賞味期限が近付いています");
+        }
+        //賞味期限が切れると警告文を表示する
+        if( getDate("retorutogohan_number_pref") <= 0 )
+        {
+            kigen_tv.setVisibility(View.VISIBLE);
+            kigen_tv.setText("賞味期限切れの商品があります");
+        }
+
 
         DialogOnClickListenerClass listener = new DialogOnClickListenerClass("ｲﾗｯｼｬｲﾏｾ",
                   current_date("retorutogohan_number_pref","レトルトごはん") + "\n"
                 + current_date("kandume_number_pref","缶詰") + "\n"
                 + current_date("kanmen_number_number_pref","乾麺") + "\n"
-                + current_date("kanpan_number_pref","カンパン")
-
+                + current_date("kanpan_number_pref","カンパン") + "\n"
+                + current_date("kandume2_number_pref","缶詰（主菜）") + "\n"
+                + current_date("retoruto_number_pref","レトルト食品") + "\n"
+                + current_date("furizu_number_pref","フリーズドライ") + "\n"
+                + current_date("mizu_number_pref","水") + "\n"
+                + current_date("pokari_number_pref","ポカリスエット") + "\n"
+                + current_date("karori_number_pref","フリーズドライ") + "\n"
                 ,this);
    }
 
-
-
-    //賞味期限メソッド（プレファレンスの名前、食品名）
+    //抽出メソッド（プレファレンスの名前、食品名）
+    //プレファレンスで保存したデータを文字列に変換して送信する
     public String current_date(String prefName, String name)
     {
         SharedPreferences pref2 = getSharedPreferences(prefName,MODE_PRIVATE);
@@ -112,7 +134,6 @@ public class MainActivity extends Activity {
         //引数で指定した食品の賞味期限
         Calendar cl2 = Calendar.getInstance();
         cl2.set( pref2.getInt("year", cl.get(Calendar.YEAR) ), pref2.getInt("month", cl.get(Calendar.MONTH) ), pref2.getInt("day", cl.get(Calendar.DAY_OF_MONTH) ) );
-        int i = cl2.compareTo(cl);//cl2 - cl
         Date date1 = cl.getTime();
         Date date2 = cl2.getTime();
 
@@ -122,5 +143,25 @@ public class MainActivity extends Activity {
         long nokori = (retorutogohan_time - current_time) / ( 1000 * 60 * 60 * 24 );
 
         return ( name + "の賞味期限はあと" + String.valueOf(nokori) + "日です。" );
+    }
+
+    //賞味期限の日付と現在の日付から引き出された残り日数を取得
+    public long getDate(String prefName)
+    {
+        SharedPreferences pref2 = getSharedPreferences(prefName,MODE_PRIVATE);
+        //現在の時刻
+        Calendar cl = Calendar.getInstance();
+        //引数で指定した食品の賞味期限
+        Calendar cl2 = Calendar.getInstance();
+        cl2.set( pref2.getInt("year", cl.get(Calendar.YEAR) ), pref2.getInt("month", cl.get(Calendar.MONTH) ), pref2.getInt("day", cl.get(Calendar.DAY_OF_MONTH) ) );
+        Date date1 = cl.getTime();
+        Date date2 = cl2.getTime();
+
+        long current_time = date1.getTime();
+        long retorutogohan_time = date2.getTime();
+
+        long nokori = (retorutogohan_time - current_time) / ( 1000 * 60 * 60 * 24 );
+
+        return nokori;
     }
 }
